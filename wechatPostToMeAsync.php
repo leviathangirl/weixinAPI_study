@@ -4,6 +4,7 @@ if (isset($_GET['echostr'])) {
     include 'wx_sample.20140819.php';
 } else {
     include 'passiveReplyObj.php';
+    include 'saveImage.php';
 }
 
 $receiveHttpRawPostData = $GLOBALS['HTTP_RAW_POST_DATA'];
@@ -19,6 +20,10 @@ $msgtype = $receiveHttpRawPostObj->MsgType;
 switch ($msgtype) {
 case 'text':
 replyText($receiveHttpRawPostObj);
+break;
+
+case 'image':
+saveImage($receiveHttpRawPostObj);
 break;
 
 default:
@@ -48,9 +53,4 @@ function replyText($receiveHttpRawPostObj)
     $reply->Content = 'Welcome to wechat world!';
     $reply->sprintfXML();
     exit();
-}
-
-function saveImage($receiveHttpRawPostObj)
-{
-
 }
