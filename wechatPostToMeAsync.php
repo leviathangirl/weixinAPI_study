@@ -52,12 +52,5 @@ function replyText($receiveHttpRawPostObj)
 
 function saveImage($receiveHttpRawPostObj)
 {
-    $reply = new textMessage();
 
-    $reply->ToUserName = $receiveHttpRawPostObj->FromUserName;
-    $reply->FromUserName = $receiveHttpRawPostObj->ToUserName;
-    $reply->CreateTime = time();
-    $reply->Content = 'Welcome to wechat world!';
-    $reply->sprintfXML();
-    exit();
 }
