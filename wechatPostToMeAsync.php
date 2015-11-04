@@ -38,7 +38,7 @@ function replyReject($receiveHttpRawPostObj)
     $reply->ToUserName = $receiveHttpRawPostObj->FromUserName;
     $reply->FromUserName = $receiveHttpRawPostObj->ToUserName;
     $reply->CreateTime = time();
-    $reply->Content = 'Unsupport message type .';
+    $reply->Content = 'Unsupport message type.';
     $reply->sprintfXML();
     exit();
 }
@@ -50,7 +50,7 @@ function replyText($receiveHttpRawPostObj)
     $reply->ToUserName = $receiveHttpRawPostObj->FromUserName;
     $reply->FromUserName = $receiveHttpRawPostObj->ToUserName;
     $reply->CreateTime = time();
-    $reply->Content = 'Welcome to wechat world!';
+    $reply->Content = 'Welcome to wechat world! You send :'.$receiveHttpRawPostObj->Content.' to me.';
     $reply->sprintfXML();
     exit();
 }
