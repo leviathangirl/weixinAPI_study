@@ -1,2 +1,2 @@
 # weixinAPI_study
-A repository for wechat debugging.
+This branch is for downloading from/to remote server.
