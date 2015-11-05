@@ -1,6 +1,7 @@
 <?php
 
 /*
+接收图片消息
 <xml>
 <ToUserName><![CDATA[toUser]]></ToUserName>
 <FromUserName><![CDATA[fromUser]]></FromUserName>
@@ -17,8 +18,7 @@ function saveImage($receiveHttpRawPostObj)
     echo 'success';
     //file_put_contents('tmp.txt', $imageName);
     //file_put_contents('GLOBALS.txt', $GLOBALS);
-    $image=file_get_contents($receiveHttpRawPostObj->PicUrl);
-    file_put_contents('upload/'.$imageName,$image);
+    downloadUrl($receiveHttpRawPostObj->PicUrl,$imageName);
 
     $reply = new textMessage();
     $reply->ToUserName = $receiveHttpRawPostObj->FromUserName;
@@ -27,4 +27,9 @@ function saveImage($receiveHttpRawPostObj)
     $reply->Content = 'image '.$receiveHttpRawPostObj->PicUrl.' saved.';
     $reply->sprintfXML();
     exit();
+}
+
+function downloadUrl($url,$name){
+  $image=file_get_contents($url);
+  file_put_contents('upload/'.$name,$image);
 }
