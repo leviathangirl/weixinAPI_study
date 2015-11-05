@@ -36,4 +36,18 @@ class textMessage
 
         echo $resultStr;
     }
+    public function relayXML($relayTo)
+    {
+        $textTpl = '<xml>
+ <ToUserName><![CDATA[%s]]></ToUserName>
+ <FromUserName><![CDATA[%s]]></FromUserName>
+ <CreateTime>%s</CreateTime>
+ <MsgType><![CDATA[%s]]></MsgType>
+ <Content><![CDATA[%s]]></Content>
+ <MsgId>%s</MsgId>
+ </xml>';
+        $resultStr = sprintf($textTpl, $this->ToUserName, $this->FromUserName, $this->CreateTime, $this->MsgType, $this->Content, $this->MsgId);
+
+        postRawData($relayTo, $resultStr);
+    }
 }
