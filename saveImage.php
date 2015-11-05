@@ -1,7 +1,7 @@
 <?php
 
 /*
-接收图片消息
+鎺ユ敹鍥剧墖娑堟伅
 <xml>
 <ToUserName><![CDATA[toUser]]></ToUserName>
 <FromUserName><![CDATA[fromUser]]></FromUserName>
