@@ -1,2 +1,2 @@
 # weixinAPI_study
-A repository for wechat debugging.
+This branch is for bridge to relay message from tencent_weixin_server to user_server.
