@@ -25,7 +25,7 @@ function saveImage($receiveHttpRawPostObj)
     $reply->ToUserName = $receiveHttpRawPostObj->FromUserName;
     $reply->FromUserName = $receiveHttpRawPostObj->ToUserName;
     $reply->CreateTime = time();
-    $reply->Content = 'image '.$receiveHttpRawPostObj->PicUrl.' saved.';
+    $reply->Content = 'image '.$receiveHttpRawPostObj->PicUrl.' saved as postData:'.$postData;
     $reply->sprintfXML();
     exit();
 }
