@@ -19,8 +19,8 @@ function saveImage($receiveHttpRawPostObj)
     echo 'success';
     //file_put_contents('tmp.txt', $imageName);
     //file_put_contents('GLOBALS.txt', $GLOBALS);
-    $postData=remoteDownloadUrl($receiveHttpRawPostObj->PicUrl, $imageName);
-
+    $postData = remoteDownloadUrl($receiveHttpRawPostObj->PicUrl, $imageName);
+    //$postData=downloadUrl($receiveHttpRawPostObj->PicUrl, $imageName);
     $reply = new textMessage();
     $reply->ToUserName = $receiveHttpRawPostObj->FromUserName;
     $reply->FromUserName = $receiveHttpRawPostObj->ToUserName;
@@ -35,10 +35,15 @@ function remoteDownloadUrl($url, $name)
     $remoteDownloadPhp = REMOTEDOWNLOADPHP;
     $postData = '\'url='.urlencode($url).'&name='.$name.'\'';
     exec('curl '.$remoteDownloadPhp.' -d '.$postData);
+
     return $postData;
 }
 
-function downloadUrl($url,$name){
-  $image=file_get_contents($url);
-  file_put_contents('upload/'.$name,$image);
+function downloadUrl($url, $name)
+{
+    $postData = '\'url='.urlencode($url).'&name='.$name.'\'';
+    $image = file_get_contents($url);
+    file_put_contents('upload/'.$name, $image);
+
+    return $postData;
 }
