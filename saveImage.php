@@ -1,5 +1,6 @@
 <?php
 
+include 'config.php';
 /*
 接收图片消息
 <xml>
@@ -18,15 +19,23 @@ function saveImage($receiveHttpRawPostObj)
     echo 'success';
     //file_put_contents('tmp.txt', $imageName);
     //file_put_contents('GLOBALS.txt', $GLOBALS);
-    downloadUrl($receiveHttpRawPostObj->PicUrl,$imageName);
+    $postData=remoteDownloadUrl($receiveHttpRawPostObj->PicUrl, $imageName);
 
     $reply = new textMessage();
     $reply->ToUserName = $receiveHttpRawPostObj->FromUserName;
     $reply->FromUserName = $receiveHttpRawPostObj->ToUserName;
     $reply->CreateTime = time();
-    $reply->Content = 'image '.$receiveHttpRawPostObj->PicUrl.' saved.';
+    $reply->Content = 'image '.$receiveHttpRawPostObj->PicUrl.' saved as postData:'.$postData;
     $reply->sprintfXML();
     exit();
+}
+function remoteDownloadUrl($url, $name)
+{
+    //curl YOUR_DOMAIN/remote/php_download.php -d 'url=123&name=14234'
+    $remoteDownloadPhp = REMOTEDOWNLOADPHP;
+    $postData = '\'url='.urlencode($url).'&name='.$name.'\'';
+    exec('curl '.$remoteDownloadPhp.' -d '.$postData);
+    return $postData;
 }
 
 function downloadUrl($url,$name){
